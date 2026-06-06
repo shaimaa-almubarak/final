@@ -1,122 +1,54 @@
-"use client"
-
-import { useState, useEffect } from "react"
-
-const slides = [
-  {
-    id: "smooth-optics",
-    label: "SMOOTH OPTICS",
-    description:
-      "Optika delivers to you Premium Digital Lenses and Solutions manufactured to the highest standards.",
-    image: "/45.png"
-  },
-  {
-    id: "custom-form",
-    label: "CUSTOM FORM",
-    description:
-      "Custom form lenses tailored to your unique prescription requirements for optimal visual clarity.",
-    image: "/45.png"
-  },
-  {
-    id: "eye-view",
-    label: "EYE VIEW",
-    description:
-      "Advanced eye view technology providing enhanced peripheral vision and a natural viewing experience.",
-    image: "/45.png"
-  },
-  {
-    id: "eye-power",
-    label: "EYE POWER",
-    description:
-      "High-performance lenses designed for maximum power and precision in vision correction.",
-    image: "/45.png"
-  }
-]
-
 export function BuiltInTechnologies() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-
-  // Auto-play slides every 5 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleNext()
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [activeIndex])
-
-  const handleNext = () => {
-    setIsTransitioning(true)
-    setTimeout(() => {
-      setActiveIndex((prev) => (prev + 1) % slides.length)
-      setIsTransitioning(false)
-    }, 300)
-  }
-
-  const selectSlide = (index: number) => {
-    if (index === activeIndex) return
-    setIsTransitioning(true)
-    setTimeout(() => {
-      setActiveIndex(index)
-      setIsTransitioning(false)
-    }, 300)
-  }
-
-  const currentSlide = slides[activeIndex]
-
   return (
-    <section className="w-full mx-auto  ">
-      {/* Background radial accent to give premium feel */}
-
-
-      {/* Slide Text Content */}
-      <div className="flex-1 flex flex-col justify-center  max-w-4xl bg-[#111111] z-10 mx-auto  text-white py-20 md:py-28 px-6 sm:px-12 md:px-24 lg:px-32 xl:px-44 flex flex-col justify-between overflow-hidden relative min-h-[480px] h-[480px]">
-        <h2 className="text-4xl md:text-5xl font-bold font-inter tracking-tight text-white mb-2">
-          Built-In Technologies
-        </h2>
-        <p className="text-lg md:text-xl font-playfair italic text-white/50 mb-8">
-          From Prescription to Patient Seamlessly.
-        </p>
-
-        {/* Dynamic content area with fade animation */}
-        <div className={`transition-opacity duration-300 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
-          {/* Label with decorative wave graphic */}
-          <div className="relative inline-block mb-4 pt-2">
-            {currentSlide.image && (
-              <img
-                src={currentSlide.image}
-                alt={currentSlide.label}
-                className=" w-[100px] h-[60px] object-contain  pointer-events-none filter brightness-200 "
-              />
-            )}
-
-          </div>
-
-          {/* Description */}
-          <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-lg font-inter">
-            {currentSlide.description}
+    <section className="w-full bg-[#f5f5f5] py-16 md:py-24 px-6 md:px-12 lg:px-16">
+      <div className="max-w-7xl mx-auto">
+        {/* Section header */}
+        <div className="mb-12 md:mb-16">
+          <h3 className="text-sm font-semibold text-gray-500 tracking-widest mb-2">CAPABILITIES</h3>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+            Built-In Technologies
+          </h2>
+          <p className="text-sm md:text-base text-gray-600">
+            Optimized lenses with advanced built-in technologies
           </p>
         </div>
-      </div>
 
-      {/* Pagination indicators at bottom */}
-      <div className="mt-4 md:mt-10 mb-4 md:mb-10 flex items-center justify-center gap-3 z-10">
-        {slides.map((slide, idx) => (
-          <button
-            key={slide.id}
-            onClick={() => selectSlide(idx)}
-            className="group py-2  flex items-center focus:outline-black"
-            aria-label={`Go to slide ${idx + 1}`}
-          >
-            {/* Horizontal line indicator */}
-            <div
-              className={`h-[2px] transition-all duration-500 rounded-full ${idx === activeIndex
-                ? "w-16 bg-black"
-                : "w-8 bg-black/20 group-hover:bg-black/40"
-                }`}
+        {/* Two-column layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left column - Text content */}
+          <div className="flex flex-col justify-center">
+            <div className="mb-8">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                Built-In<br />Technologies
+              </h3>
+              <div className="w-1 h-8 bg-blue-500 mb-6"></div>
+              <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-6">
+                Optika delivers Premium Digital Lenses and Solutions manufactured to the highest standards with advanced built-in technologies that enhance every lens.
+              </p>
+            </div>
+
+            {/* Features section */}
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-sm font-semibold text-gray-900 mb-2">NEXT GEN FEATURES</h4>
+                <ul className="text-xs md:text-sm text-gray-600 space-y-1">
+                  <li>• Custom form lenses for prescription requirements</li>
+                  <li>• Advanced eye view technology</li>
+                  <li>• High-performance materials</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Right column - Image */}
+          <div className="flex items-center justify-center">
+            <img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-lt2MPp4dhnceyI2Hw5zKhaj1QsHX5x.png"
+              alt="Built-in technologies showcase"
+              className="w-full h-auto object-cover grayscale"
             />
-          </button>
-        ))}
+          </div>
+        </div>
       </div>
     </section>
   )
